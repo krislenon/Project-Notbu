@@ -4,14 +4,14 @@ USE notbu;
 
 CREATE TABLE fullAddress (
     address_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    house_num varchar(50) NOT NULL,
-    street varchar(50) NOT NULL,
-    subdivision varchar(50) NOT NULL,
+    house_num varchar(50),
+    street varchar(50),
+    subdivision varchar(50),
     barangay varchar(50) NOT NULL,
     city varchar(50) NOT NULL,
     province varchar(50) NOT NULL,
-    zip varchar(50) NOT NULL,
-    landmark varchar(50) NOT NULL
+    zip varchar(4) NOT NULL,
+    landmark varchar(50)
 );
 
 CREATE TABLE customer (
@@ -37,6 +37,7 @@ CREATE TABLE admin (
 
 CREATE TABLE supplier (
     suppplier_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    supplier_name varchar(50) NOT NULL,
     first_name varchar(50) NOT NULL,
     last_name varchar(50) NOT NULL,
     contact_number varchar(11),
@@ -45,21 +46,24 @@ CREATE TABLE supplier (
     ON DELETE CASCADE
 );
 
-CREATE TABLE specification (
-    spec_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    type varchar(50) NOT NULL,
-    color varchar(50) NOT NULL,
-    brand varchar(50) NOT NULL
-);
-
 CREATE TABLE product (
     product_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     product_name varchar(50) NOT NULL,
-    price float NOT NULL,
     category varchar(20) NOT NULL,
     status ENUM('SOLD OUT','NORMAL','ON SALE') NOT NULL,
-    specs int default NULL,
-    constraint product_specs_fk foreign key (specs) references specification(spec_id)
+    brand varchar(50) NOT NULL,
+    body text,
+    img_filename varchar(50) NOT NULL
+);
+
+CREATE TABLE specs (
+    spec_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    price float NOT NULL,
+    type1 varchar(50),
+    type2 varchar(50),
+    product_id int NOT NULL,
+    img_filename varchar(50) NOT NULL,
+    constraint spec_products_fk foreign key (product_id) references product(product_id)
     ON DELETE CASCADE
 );
 
