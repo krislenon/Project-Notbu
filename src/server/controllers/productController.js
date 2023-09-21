@@ -24,16 +24,31 @@ exports.addProduct = (req,res) =>{
 }
 
 exports.viewAllProducts = (req,res) => {
-	connection.query('SELECT * FROM product',[], function(err, rows, fields){
-		if (err) {
-            console.log(err)
+    var numRows;
+    var numPerPage = parseInt(req.query.npp, 10) || 10;
+    var page = parseInt(req.query.page, 10) || 0;
+    var skip = page * numPerPage;
+
+    var limit = skip + ',' + numPerPage;
+
+    connection.query('SELECT count(*) as numRows FROM product',function (err, rows, fields) {
+        if(err) {
+            console.log(err);
             res.send(err);
-         }
-        else {
-            res.send(rows);
-            console.log("Successfully viewed all products.");
+        }else{
+            var numRows = rows[0].numRows;
+            var numPages = Math.ceil(numRows / numPerPage);
+            connection.query('SELECT * FROM product LIMIT ' + limit,function (err, rows, fields) {
+                if(err) {
+                    console.log(err);
+                    res.send(err);
+                }else{
+                    res.send(rows);
+                    console.log("Successfully viewed all products.");
+                }
+            });            
         }
-	});
+    });
 }
 
 exports.viewProduct = (req,res) => {
@@ -88,6 +103,17 @@ exports.deleteProduct = (req,res) => {
 		if(!err) {
 			console.log("Success");
 			res.send(null);
+		}else{
+			console.log(err);
+			res.send(err);
+		}
+	});
+};
+
+exports.filterProductByCategory = (req,res) => {
+	connection.query('SELECT * FROM product WHERE category = ?', [req.params.category], function(err, rows, fields){
+		if(!err) {
+			res.send(rows);
 		}else{
 			console.log(err);
 			res.send(err);
