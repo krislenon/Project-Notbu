@@ -14,8 +14,8 @@ CREATE TABLE fullAddress (
     landmark varchar(50)
 );
 
-CREATE TABLE customer (
-    customer_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE user (
+    user_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name varchar(50) NOT NULL,
     last_name varchar(50) NOT NULL,
     username varchar(20),
@@ -23,16 +23,10 @@ CREATE TABLE customer (
     contact_number varchar(11),
     address int default NULL,
     mop varchar(10),
-    constraint customer_username_uk unique key (username),
-    constraint customer_address_fk foreign key (address) references fullAddress(address_id)
+    isOverallAdmin int default 0,
+    constraint user_username_uk unique key (username),
+    constraint user_address_fk foreign key (address) references fullAddress(address_id)
     ON DELETE CASCADE
-);
-
-CREATE TABLE admin (
-    admin_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username varchar(20),
-    password varchar(72),
-    constraint admin_username_uk unique key (username)
 );
 
 CREATE TABLE supplier (
