@@ -1,14 +1,5 @@
 USE notbu;
 
-insert into fullAddress (house_num, street, subdivision, barangay, city, province, zip, landmark) values (null, null, null, 'Gulod', 'Novaliches Q.C.', 'Metro Manila', '1117','Angelique Devine Grace School');
-insert into user (first_name, last_name, username, password, contact_number, address, mop) values ('Abegail', 'Navarro', 'kavehime', 'non-chanMylabs', '09471524613', LAST_INSERT_ID(), 'BPI');
-insert into fullAddress (house_num, street, subdivision, barangay, city, province, zip, landmark) values ('L3 Blk5', 'A. Ramirez', 'IA-JAN Townhomes', 'San Bartolome', 'Novaliches Q.C.', 'Metro Manila', '1116', null);
-insert into user (first_name, last_name, username, password, contact_number, address, mop) values ('Vivian Joy', 'Tatad', 'pokemonMaster', 'gustoKoNangMagResign100+', '09167065029', LAST_INSERT_ID(), 'GCash');
-insert into fullAddress (house_num, street, subdivision, barangay, city, province, zip, landmark) values ('Blk 53 Lot 7', null, 'Villa Luisa', 'Barangay 171', 'North Bagumbong Caloocan City', 'Metro Manila', '1421',null);
-insert into user (first_name, last_name, username, password, contact_number, address, mop) values ('Hannah Hazel', 'Cabardo', null, null, '09394313244', LAST_INSERT_ID(), 'COD');
-insert into fullAddress (house_num, street, subdivision, barangay, city, province, zip, landmark) values ('#70 Blk4 L11', 'Phase II', 'Dormitory', 'Nagkaisang Nayon', 'Novaliches Q.C.', 'Metro Manila', '1125','Dormitory Court');
-insert into user (first_name, last_name, username, password, contact_number, address, mop, isOverallAdmin) values ('Kris', 'Lenon', null, null, '09480713616', LAST_INSERT_ID(), 'COD', 1);
-
 insert into fullAddress (house_num, street, subdivision, barangay, city, province, zip, landmark) values ('E Lot #2', 'Marcos', 'Dona Faustina', 'San Bartolome', 'Novaliches Q.C.', 'Metro Manila', '1116','AC-DC Band Studio');
 insert into supplier (supplier_name, first_name, last_name, contact_number, address) values ('Pampam Furnitures', 'Pamela Ann', 'Febrio', '09166561552', LAST_INSERT_ID());
 
