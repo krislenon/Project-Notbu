@@ -2,11 +2,11 @@
 > It allows developers to interact with product listings and users via RESTful endpoints.  
 > Tested using Postman and currently runs on Node.js with Express.
 
-### GET /products
+## `GET` /products
 Returns a list of available products.
 
-#### Request
-* Method: GET
+### Request
+* Method: `GET`
 * Endpoint: /products
 * Base URL: http://localhost:4000
 
@@ -15,9 +15,10 @@ Returns a list of available products.
 GET /products HTTP/1.1
 Host: localhost:4000
 ```
-#### Response
+### Response
 **Success (200 OK)**
 Returns a JSON array of product objects.
+
 **Response Example:**
 ```
 [
@@ -41,7 +42,41 @@ Returns a JSON array of product objects.
   }
 ]
 ```
-#### Error
+### Error
 | Status Code | Meaning               | Description                                    |
 | ----------- | --------------------- | ---------------------------------------------- |
 | 500         | Internal Server Error | Server-side error occurred while fetching data |
+
+## `GET` /products/:id
+Retrieve a specific product by its ID.
+
+### Request
+* Method: `GET`
+* Endpoint: /products/:id
+* Example: /products/1
+
+**Request Parameters:**
+| Parameter | Type   | Required | Description       |
+| --------- | ------ | -------- | ----------------- |
+| id        | int    | Yes      | ID of the product |
+
+**Request Example:**
+```
+GET /products/1 HTTP/1.1
+Host: localhost:3000
+```
+### Response
+Success (200 OK) Returns a JSON of the product object.
+
+**Response Example:**
+```
+{
+    "id": 1,
+    "product_name": "Hampas Chair",
+    "category": "chairs",
+    "status": "NORMAL",
+    "brand": "no brand",
+    "body": "Matibay, pwede ipang-hampas sa kaaway",
+    "img_filename": "hampas_chair.png"
+  }
+```
