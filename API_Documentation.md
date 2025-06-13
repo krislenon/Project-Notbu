@@ -17,6 +17,7 @@ Host: localhost:4000
 ```
 ### Response
 **Success (200 OK)**
+
 Returns a JSON array of product objects.
 
 **Response Example:**
@@ -66,7 +67,9 @@ GET /products/1 HTTP/1.1
 Host: localhost:3000
 ```
 ### Response
-Success (200 OK) Returns a JSON of the product object.
+**Success (200 OK)** 
+
+Returns a JSON of the product object.
 
 **Response Example:**
 ```
@@ -79,4 +82,128 @@ Success (200 OK) Returns a JSON of the product object.
     "body": "Matibay, pwede ipang-hampas sa kaaway",
     "img_filename": "hampas_chair.png"
   }
+```
+## `GET` /products/filter/:category
+Retrieve all products that belong to a specific category.
+
+### Request
+* Method: `GET`
+* Endpoint: /products/filter/:category
+* Example: /products/filter/chairs
+
+**Request Parameters:**
+| Parameter  | Type   | Required | Description                 |
+| ---------- | ------ | -------- | --------------------------- |
+| category   | string | Yes      | Category to filter products |
+
+**Request Example:**
+```
+GET /products/filter/stationery HTTP/1.1
+Host: localhost:4000
+```
+### Response
+**Success (200 OK)**
+
+Returns a JSON array of product objects in the given category.
+
+**Response Example:**
+```
+[
+  {
+    "id": 1,
+    "product_name": "Hampas Chair",
+    "category": "chairs",
+    "status": "NORMAL",
+    "brand": "no brand",
+    "body": "Matibay, pwede ipang-hampas sa kaaway",
+    "img_filename": "hampas_chair.png"
+  },
+  {
+    "id": 5,
+    "product_name": "Arm Chair",
+    "category": "chairs",
+    "status": "NORMAL",
+    "brand": "Jolly",
+    "body": "Rattan chairs",
+    "img_filename": "arm_chair_jolly.png"
+  }
+]
+```
+
+## `PUT` /products/:id
+Update the information of a product.
+
+### Request
+* Method: `PUT`
+* Endpoint: /products/:id
+* Example: /products/1
+
+**Request Parameters:**
+| Parameter  | Type   | Required | Description                 |
+| ---------- | ------ | -------- | --------------------------- |
+| id         | int    | Yes      | ID of the product           |
+
+
+**Request Example:**
+```
+PUT /products/1 HTTP/1.1
+Host: localhost:4000
+Request Body:
+{
+    "id": 1,
+    "product_name": "Hampas Chair",
+    "category": "chairs",
+    "status": "NORMAL",
+    "brand": "no brand",
+    "body": "Heavy Duty. Built to last, this chair can withstand weight and pressure with ease.",
+    "img_filename": "hampas_chair.png"
+}
+```
+### Response
+**Success (200 OK)**
+
+Returns a JSON of the updated product object.
+
+**Response Example:**
+```
+{
+    "id": 1,
+    "product_name": "Hampas Chair",
+    "category": "chairs",
+    "status": "NORMAL",
+    "brand": "no brand",
+    "body": "Heavy Duty. Built to last, this chair can withstand weight and pressure with ease.",
+    "img_filename": "hampas_chair.png"
+}
+```
+
+## `DELETE` /products/:id
+Retrieve all products that belong to a specific category.
+
+### Request
+* Method: `DELETE`
+* Endpoint: /products/:id
+* Example: /products/1
+
+**Request Parameters:**
+| Parameter  | Type   | Required | Description                 |
+| ---------- | ------ | -------- | --------------------------- |
+| id         | int    | Yes      | ID of the product           |
+
+**Request Example:**
+```
+DELETE /products/1 HTTP/1.1
+Host: localhost:4000
+```
+### Response
+**Success (200 OK)**
+
+Returns a JSON array of a message and productId that was deleted.
+
+**Response Example:**
+```
+{
+  "message": "Product deleted successfully",
+  "productId": "1"
+}
 ```
